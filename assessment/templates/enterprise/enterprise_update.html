@@ -1,0 +1,14 @@
+{% extends 'enterprise/enterprise_base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <form action="{% url 'enterpriseUpdateHandler' enterprise.id %}" method="post">
+        {% csrf_token %}
+        <div class="panel-heading"><h3>企业信息管理</h3></div>
+        {% bootstrap_form enterpriseForm %}
+        <div class="panel-footer">
+            <div class="btn-group" role="group">
+                <button type="submit" name="submit">保存企业信息</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

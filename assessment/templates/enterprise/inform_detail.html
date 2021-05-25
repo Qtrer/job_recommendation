@@ -1,0 +1,22 @@
+{% extends 'enterprise/lower_base.html' %}
+{% block content %}
+    <div class="panel-heading"><h3>面试详情</h3></div>
+    <table class="table">
+        <td>
+        <th>企业名</th>
+        <th>岗位名</th>
+        <th>求职者名</th>
+        <th>时间</th>
+        </td>
+        <tr>
+            <th></th>
+            <th>{{ inform.job.enterprise }}</th>
+            <th>{{ inform.job }}</th>
+            <th>{{ inform.employee }}</th>
+            <th>{{ inform.time }}</th>
+        </tr>
+    </table>
+    <div class="panel-footer">
+    方式:{{ inform.mode }}
+    </div>
+{% endblock %}

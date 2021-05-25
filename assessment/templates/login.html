@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <form action='{% url 'login' %}' method="post">
+        {% if message %}
+            <div class="alert alert-warning" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">警告:</span>
+                {{ message }}
+            </div>
+        {% endif %}
+        {% if messages %}
+            <div class="alert alert-info" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">信息:</span>
+                {{ messages }}
+            </div>
+        {% endif %}
+        {% csrf_token %}
+    <div class="panel-heading"><h3>登录</h3></div>
+        {% bootstrap_form loginForm %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    <div class="panel-body">
+        没有账号？
+        <a href="{% url 'register' %}"><label>点击此处注册</label></a>
+    </div>
+    </form>
+{% endblock %}

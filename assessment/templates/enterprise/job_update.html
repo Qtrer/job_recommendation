@@ -1,0 +1,44 @@
+{% extends 'enterprise/lower_base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <form action="{% url 'jobUpdateHandler' enterprise.id job.id %}" method="post">{% csrf_token %}
+    <div class="panel-heading">
+        <h3>岗位管理</h3>
+    </div>
+        {% bootstrap_form jobForm %}
+        <br/>
+        <div class="panel-body">
+            <h4>技能需求管理</h4>
+            <div class="btn-group">
+                <button type="button" class="btn"><a href="{% url 'createRequest' enterprise.id job.id %}" style="color: black;text-decoration:none;">新增需求</a></button>
+            </div>
+        </div>
+        {{ formset.management_form }}
+        <table class="table">
+            <thead>
+            <tr>
+                <td>领域</td>
+                <td>难度</td>
+                <td>权重</td>
+                <td></td>
+                <td>删除</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for form in formset %}
+                <tr>
+                    {% for field in form %}
+                        <td>{{ field }}</td>
+                    {% endfor %}
+                    <td><a href="{% url 'delRequest' enterprise.id job.id forloop.counter %}" style="text-decoration:none">删除</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <div class="panel-footer">
+            <div class="btn-group" role="group">
+                <button type="submit" name="submit">保存岗位信息</button>
+            </div>
+        </div>
+</form>
+{% endblock %}

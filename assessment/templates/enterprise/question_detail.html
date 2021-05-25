@@ -1,0 +1,37 @@
+{% extends 'enterprise/lower_base.html' %}
+{% block content %}
+    <div class="panel-heading"><h3>题目详情</h3></div>
+    <table class="table">
+        <td>
+        <th>标题</th>
+        <th>领域</th>
+        <th>难度</th>
+        </td>
+        <tr>
+            <th></th>
+            <th>{{ question.title }}</th>
+            <th>{{ question.get_aspect_display }}</th>
+            <th>{{ question.get_level_display }}</th>
+        </tr>
+    </table>
+    <div class="panel-heading">
+        <h3>选项</h3>
+    </div>
+    <table class="table">
+        <td>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>答案</th>
+        </td>
+        <tr>
+            <th></th>
+            <th>{{ question.choiceA }}</th>
+            <th>{{ question.choiceB }}</th>
+            <th>{{ question.choiceC }}</th>
+            <th>{{ question.choiceD }}</th>
+            <th>{{ question.get_answer_display }}</th>
+        </tr>
+    </table>
+{% endblock %}

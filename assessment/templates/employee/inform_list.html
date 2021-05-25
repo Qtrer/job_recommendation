@@ -1,0 +1,33 @@
+{% extends 'employee/employee_base.html' %}
+{% block content %}
+    <div class="panel-heading"><h3>面试通知列表</h3></div>
+    <table class="table">
+        <td>
+        <th>企业名</th>
+        <th>岗位名</th>
+        <th>详情</th>
+        </td>
+        {% for inform in informs %}
+            <tr>
+                <th></th>
+                <th>{{ inform.job.enterprise }}</th>
+                <th>{{ inform.job }}</th>
+                <th><a href="{% url 'employeeInformDetail' employee.id inform.id%}" style="text-decoration:none;">详情</a></th>
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="panel-heading"><h3>面试申请列表</h3></div>
+    <table class="table">
+        <td>
+        <th>企业名</th>
+        <th>岗位名</th>
+        </td>
+        {% for application in applications %}
+            <tr>
+                <th></th>
+                <th>{{ application.job.enterprise }}</th>
+                <th>{{ application.job }}</th>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

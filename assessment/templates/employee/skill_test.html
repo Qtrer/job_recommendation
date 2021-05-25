@@ -1,0 +1,39 @@
+{% extends 'employee/lower_base.html' %}
+{% block content%}
+    <div class="panel-heading"><h3>技能测试</h3></div>
+    <form action="{% url 'calSkillGrade' employee.id job.id %}" method="post">{% csrf_token %}
+    <input type="hidden" name="employeeID" value="{{ employee.id }}">
+    <input type="hidden" name="jobID" value="{{ job.id }}">
+    <input type="hidden" name="paperID" value="{{ newPaper.id }}">
+    <div class="pre-scrollable">
+        {% for paper in newPaper.pid.all %}
+        <div class="panel-body">
+            <h4>{{ forloop.counter }}: {{ paper.title }}</h4>
+        </div>
+            <div class="radio-inline">
+                <label class="radio">
+                    <input type="radio" name="{{ paper.id }}" value="1" checked/>
+                    <span>{{ paper.choiceA }}</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="{{ paper.id }}" value="2"/>
+                    <span>{{ paper.choiceB }}</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="{{ paper.id }}" value="3"/>
+                    <span>{{ paper.choiceC }}</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="{{ paper.id }}" value="4"/>
+                    <span>{{ paper.choiceD }}</span>
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="panel-footer">
+            <div class="btn-group" role="group">
+                <button type="submit" name="submit">提交</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

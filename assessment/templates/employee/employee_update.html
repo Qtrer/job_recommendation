@@ -1,0 +1,17 @@
+{% extends 'employee/employee_base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <form action="{% url 'employeeUpdateHandler' employee.id %}" method="post">
+        {% if message %}
+            <div>{{ message }}</div>
+        {% endif %}
+        {% csrf_token %}
+        <div class="panel-heading"><h3>用户信息管理</h3></div>
+        {% bootstrap_form employeeForm %}
+        <div class="panel-footer">
+            <div class="btn-group" role="group">
+                <button type="submit" name="submit">保存用户信息</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

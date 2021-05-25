@@ -1,0 +1,61 @@
+{% extends 'employee/employee_base.html' %}
+{% block content %}
+    <div class="panel-heading"><h3>性格测试结果</h3></div>
+    <div class="panel-body">
+        <button type="button" class="btn">
+            <a href="{% url 'rePersonalityTest' employee.id %}" style="color: black;text-decoration:none;">重测</a>
+        </button>
+    </div>
+    <table class="table">
+        <td>
+        <th>EI得分</th>
+        <th>SN得分</th>
+        <th>TF得分</th>
+        <th>JP得分</th>
+        <th>性格类型</th>
+        </td>
+        <tr>
+            <th></th>
+            <th>{{ grade.gradeEI }}</th>
+            <th>{{ grade.gradeSN }}</th>
+            <th>{{ grade.gradeTF }}</th>
+            <th>{{ grade.gradeJP }}</th>
+            <th>{{ grade.get_type_display }}</th>
+        </tr>
+    </table>
+    <div class="panel-footer">
+    {% if grade.get_type_display == 'ESTJ大男人型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ESTJ">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ESFJ主人型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ESFJ">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ESFP表演型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ESFP">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ENTJ将军型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ENTJ">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ENTP发明家型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ENTP">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ENFJ教育家型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ENFJ">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ENFP记者型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ENFP">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ISTJ公务型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ISTJ">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ISTP冒险家型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ISTP">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ISFJ照顾型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ISFJ">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ISFP艺术家型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ISFP">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'INTJ专家型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/INTJ">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'INTP学者型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/INTP">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'INFJ作家型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/INFJ">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'INFP哲学家型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/INFP">点击此处跳转</a></p>
+    {% elif grade.get_type_display == 'ESTP挑战型' %}
+        <p>性格解析:<a href="https://baike.baidu.com/item/ESTP">点击此处跳转</a></p>
+    {% endif %}
+    </div>
+{% endblock %}

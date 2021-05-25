@@ -1,0 +1,27 @@
+{% extends 'employee/employee_base.html' %}
+{% block content %}
+    <div class="panel-heading"><h3>待推荐岗位列表</h3></div>
+    <table class="table">
+        <td>
+        <th>企业名</th>
+        <th>岗位名</th>
+        <th>地区</th>
+        <th>工资</th>
+        <th>匹配度</th>
+        <th>详情</th>
+        <th>发送面试申请</th>
+        </td>
+        {% for job, score in scores %}
+            <tr>
+                <th></th>
+                <th>{{ job.enterprise }}</th>
+                <th>{{ job.name }}</th>
+                <th>{{ job.get_city_display }}</th>
+                <th>{{ job.salary }}</th>
+                <th>{{ score.score }}</th>
+                <th><a href="{% url 'employeeJobDetail' employee.id job.id %}" style="text-decoration:none;">详情</a></th>
+                <th><a href="{% url 'applicationCreate' employee.id job.id %}" style="text-decoration:none;">发送面试申请</a></th>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

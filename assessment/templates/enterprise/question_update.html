@@ -1,0 +1,15 @@
+{% extends 'enterprise/lower_base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <form action="{% url 'questionUpdateHandler' enterprise.id question.id %}" method="post">{% csrf_token %}
+    <div class="panel-heading">
+        <h3>题目管理</h3>
+    </div>
+        {% bootstrap_form questionForm %}
+    <div class="panel-footer">
+            <div class="btn-group" role="group">
+                <button type="submit" name="submit">保存题目信息</button>
+            </div>
+        </div>
+</form>
+{% endblock %}

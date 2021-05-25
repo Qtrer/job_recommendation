@@ -1,0 +1,15 @@
+{% extends 'enterprise/lower_base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <form action="{% url 'informUpdateHandler' enterprise.id inform.id %}" method="post">{% csrf_token %}
+    <div class="panel-heading">
+        <h3>面试通知管理</h3>
+    </div>
+        {% bootstrap_form informForm %}
+    <div class="panel-footer">
+            <div class="btn-group" role="group">
+                <button type="submit" name="submit">保存面试通知信息</button>
+            </div>
+        </div>
+</form>
+{% endblock %}

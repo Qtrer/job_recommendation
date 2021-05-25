@@ -1,0 +1,45 @@
+{% extends 'enterprise/enterprise_base.html' %}
+{% block content %}
+    {% if existQuestions %}
+         <div class="alert alert-warning" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">警告:</span>
+             {% for i in existQuestions %}
+                 {{ i }},
+             {% endfor %}已存在
+            </div>
+    {% endif %}
+    <div class="panel-heading"><h3>题目列表</h3></div>
+    <div class="panel-body">
+        <button type="button" class="btn">
+            <a href="{% url 'questionCreate' enterprise.id %}" style="color: black;text-decoration:none;">创建新题目</a>
+        </button>
+        <form action="{% url 'uploadFile' enterprise.id %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="导入文件"/>
+        </form>
+    </div>
+    <div class="pre-scrollable">
+    <table class="table">
+        <td>
+        <th>题目</th>
+        <th>领域</th>
+        <th>难度</th>
+        <th>详情</th>
+        <th>管理</th>
+        <th>删除</th>
+        </td>
+        {% for q in questions %}
+            <tr>
+                <th></th>
+                <th>{{ q.title }}</th>
+                <th>{{ q.get_aspect_display }}</th>
+                <th>{{ q.get_level_display }}</th>
+                <th><a href="{% url 'questionDetail' enterprise.id q.id %}" style="text-decoration:none;">详情</a></th>
+                <th><a href="{% url 'questionUpdate' enterprise.id q.id %}" style="text-decoration:none;">管理</a></th>
+                <th><a href="{% url 'delQuestion' enterprise.id forloop.counter %}" style="text-decoration:none;">删除</a></th>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}

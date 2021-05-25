@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Employee</title>
+
+    <!-- Bootstrap -->
+    <link href="../../../../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../../static/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <div class="header page-header bg-primary">
+            <h1>职业评估与岗位关联推荐系统</h1>
+    </div>
+    {% if not employee.name %}
+        <div class="alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            请先完善基本信息
+        </div>
+    {% endif %}
+    {% if not employee.personalitygrade.type %}
+        <div class="alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            请先进行性格测试
+        </div>
+    {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 menu">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active"><a href="{% url 'employeeIndex' employee.id %}">主页</a></li>
+                    <li role="presentation"><a href="{% url 'employeeUpdate' employee.id %}">个人信息管理</a></li>
+                    <li role="presentation"><a href="{% url 'personalityTest' employee.id %}">
+                        {% if employee.personalitygrade %}
+                            性格测试结果查询
+                        {% else %}
+                            性格测试
+                        {% endif %}</a></li>
+                    <li role="presentation"><a href="{% url 'skillGradeList' employee.id %}">技能测试结果查询</a></li>
+                    <li role="presentation"><a href="{% url 'employeeRecommendationList' employee.id %}">岗位推荐结果查询</a></li>
+                    <li role="presentation"><a href="{% url 'employeeInformList' employee.id %}">面试通知查询</a></li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                {% block content %}
+                    content
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../../../../static/bootstrap/js/bootstrap.js"></script>
+  </body>
+</html>

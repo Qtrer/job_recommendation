@@ -1,0 +1,40 @@
+{% extends 'employee/lower_base.html' %}
+{% block content %}
+    <div class="panel-heading"><h3>技能测试结果</h3></div>
+    <div>
+    {% if grade.grade < 60 %}
+        <div class="panel-body">很抱歉，您未通过测试</div>
+    {% else %}
+        <div class="panel-body">恭喜您，通过测试</div>
+    {% endif %}
+    </div>
+    <table class="table">
+        <td>
+        <th>求职者名</th>
+        <th>企业名</th>
+        <th>岗位名</th>
+        <th>总分</th>
+        </td>
+        <tr>
+            <th></th>
+            <th>{{ grade.employee.name }}</th>
+            <th>{{ grade.enterprise.name }}</th>
+            <th>{{ grade.job.name }}</th>
+            <th>{{ grade.grade }}</th>
+        </tr>
+    </table>
+    <div class="panel-heading"><h3>领域得分</h3></div>
+    <table class="table">
+        <td>
+        <th>领域</th>
+        <th>得分</th>
+        </td>
+        {% for score in scores %}
+        <tr>
+            <th></th>
+            <th>{{ score.get_aspect_display }}</th>
+            <th>{{ score.score }}</th>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
